@@ -43,6 +43,7 @@ flags.DEFINE_float(
     'each clone will go over full epoch individually, but replicas will go '
     'once across all replicas.')
 flags.DEFINE_integer('num_samples', 32739, 'Number of samples.')
+flags.DEFINE_integer('num_classes', 61, 'Number of classes')
 flags.DEFINE_integer('num_steps', 10000, 'Number of steps.')
 flags.DEFINE_integer('batch_size', 48, 'Batch size')
 
@@ -159,7 +160,7 @@ def main(_):
     
     num_samples = FLAGS.num_samples
     dataset = get_record_dataset(FLAGS.record_path, num_samples=num_samples, 
-                                 num_classes=61)
+                                 num_classes=FLAGS.num_classes)
     data_provider = slim.dataset_data_provider.DatasetDataProvider(dataset)
     image, label = data_provider.get(['image', 'label'])
     
@@ -172,7 +173,7 @@ def main(_):
                                     #capacity=5*FLAGS.batch_size,
                                     allow_smaller_final_batch=True)
     
-    cls_model = model.Model(is_training=True, num_classes=61)
+    cls_model = model.Model(is_training=True, num_classes=FLAGS.num_classes)
     preprocessed_inputs = cls_model.preprocess(inputs)
     prediction_dict = cls_model.predict(preprocessed_inputs)
     loss_dict = cls_model.loss(prediction_dict, labels)
