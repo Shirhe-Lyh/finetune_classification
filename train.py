@@ -139,7 +139,7 @@ def get_init_fn():
             'in %s' % FLAGS.logdir)
         return None
     
-    if tf.gfile.IsDirectory(FLAGS.logdir):
+    if tf.gfile.IsDirectory(FLAGS.checkpoint_path):
         checkpoint_path = tf.train.latest_checkpoint(FLAGS.checkpoint_path)
     else:
         checkpoint_path = FLAGS.checkpoint_path
