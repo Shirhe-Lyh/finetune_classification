@@ -70,14 +70,20 @@ def create_tf_example(image_path, label, resize_size=None):
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
     
+    width, height = image.size
+    
     # Resize
     if resize_size is not None:
-        image = image.resize((resize_size, resize_size), Image.ANTIALIAS)
+        if width > height:
+            width = int(width * resize_size / height)
+            height = resize_size
+        else:
+            width = resize_size
+            height = int(height * resize_size / width)
+        image = image.resize((width, height), Image.ANTIALIAS)
         bytes_io = io.BytesIO()
         image.save(bytes_io, format='JPEG')
         encoded_jpg = bytes_io.getvalue()
-    
-    width, height = image.size
     
     tf_example = tf.train.Example(
         features=tf.train.Features(feature={
