@@ -35,7 +35,7 @@ FLAGS = flags.FLAGS
 
 if __name__ == '__main__':
     # Specify which gpu to be used
-    os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+    os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     
     frozen_inference_graph_path = FLAGS.frozen_inference_graph_path
     images_dir = FLAGS.images_dir
@@ -75,3 +75,4 @@ if __name__ == '__main__':
     #pred_results_json = json.dumps(val_results)
     file = open('./val_result_10000.json', 'w')
     json.dump(val_results, file)
+    file.close()

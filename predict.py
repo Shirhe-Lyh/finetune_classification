@@ -64,3 +64,4 @@ if __name__ == '__main__':
     #pred_results_json = json.dumps(val_results)
     file = open(output_path, 'w')
     json.dump(val_results, file)
+    file.close()

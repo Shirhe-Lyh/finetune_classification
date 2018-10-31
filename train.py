@@ -156,7 +156,7 @@ def get_init_fn():
 
 def main(_):
     # Specify which gpu to be used
-    os.environ["CUDA_VISIBLE_DEVICES"] = '1'
+    os.environ["CUDA_VISIBLE_DEVICES"] = '0'
     
     num_samples = FLAGS.num_samples
     dataset = get_record_dataset(FLAGS.record_path, num_samples=num_samples, 
