@@ -33,7 +33,7 @@ flags.DEFINE_string('checkpoint_path',
                     'resnet_v1_50.ckpt', 
                     'Path to pretrained ResNet-50 model.')
 flags.DEFINE_string('logdir', './training', 'Path to log directory.')
-flags.DEFINE_float('learning_rate', 0.0001, 'Initial learning rate.')
+flags.DEFINE_float('learning_rate', 0.001, 'Initial learning rate.')
 flags.DEFINE_float(
     'learning_rate_decay_factor', 0.1, 'Learning rate decay factor.')
 flags.DEFINE_float(

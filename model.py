@@ -53,7 +53,7 @@ class Model(object):
             inputs, self._default_image_size, self._default_image_size, 
             resize_side_min=self._fixed_resize_side,
             is_training=self._is_training,
-            border_expand=True, normalize=True,
+            border_expand=True, normalize=False,
             preserving_aspect_ratio_resize=False)
         preprocessed_inputs = tf.cast(preprocessed_inputs, tf.float32)
         return preprocessed_inputs
